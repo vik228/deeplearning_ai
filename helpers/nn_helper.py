@@ -34,7 +34,7 @@ def optimize(w, b, X, Y, num_iterations, learning_rate, print_cost=False):
         if i % 100 == 0:
             costs.append(cost)
         if print_cost and i % 100 == 0:
-            print("Cost after iteration %i: %f" % (i, cost))
+            print "Cost after iteration %i: %f" % (i, cost)
     params = {"w": w, "b": b}
     grads = {"dw": dw, "db": db}
     return params, grads, costs

@@ -1,0 +1,8 @@
+name: deeplearning_ai
+dependencies:
+  - numpy
+  - pandas
+  - jupyter
+  - seaborn
+  - matplotlib
+  - scikit-learn
