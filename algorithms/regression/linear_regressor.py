@@ -22,7 +22,7 @@ class LinearRegressor(object):
         self.cost = None
         self.w = None
 
-    def fit(self, X, Y):
+    def fit(self, x, y):
         """Fit The training data
         Parameters
         ----------
@@ -35,17 +35,18 @@ class LinearRegressor(object):
         -------
         self: object
         """
-        m = X.shape[0]  # number of training examples
-        self.cost = []
-        X = np.array(X, dtype=np.float64)
-        Y = np.array(Y, dtype=np.float64)
-        self.w = np.zeros((X.shape[1], 1))
+        self.cost_ = []
+        self.w_ = np.zeros((x.shape[1], 1))
+        m = x.shape[0]
+
         for _ in range(self.n_iterations):
-            y_pred = np.dot(X, self.w)
-            diff = y_pred - Y
-            self.w -= (np.dot(X.T, diff)) * (self.eta / m)
-            cost = np.sum((diff)**2) / (2 * m)
-            self.cost.append(cost)
+            y_pred = np.dot(x, self.w_)
+            residuals = y_pred - y
+            gradient_vector = np.dot(x.T, residuals)
+            self.w_ -= (self.eta / m) * gradient_vector
+            cost = np.sum((residuals**2)) / (2 * m)
+            self.cost_.append(cost)
+        return self
 
     def predict(self, X):
         """Pridict the value after the model is trained

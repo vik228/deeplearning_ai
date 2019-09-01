@@ -1,7 +1,7 @@
 import numpy as np
 from algorithms.regression.linear_regressor import LinearRegressor
 from algorithms.regression.polynomial_regression import PolynomialRegressor
-from algorithms.matrices import PerformanceMetrics
+from algorithm_performance.matrics import PerformanceMetrics
 
 
 def test_using_random_dataset():

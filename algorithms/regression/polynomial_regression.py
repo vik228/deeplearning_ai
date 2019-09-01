@@ -20,4 +20,4 @@ class PolynomialRegressor(object):
 
     def predict(self, x):
         x_poly = self.polynomial_features(x)
-        self.linear_regressor.predict(x_poly)
+        return self.linear_regressor.predict(x_poly)
