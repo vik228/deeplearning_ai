@@ -16,7 +16,7 @@ class LinearRegressor(object):
     cost: total error of the model after each iterations
     """
 
-    def __init__(self, eta=0.05, n_iterations=1000):
+    def __init__(self, eta=0.00000001, n_iterations=10000):
         self.eta = eta
         self.n_iterations = n_iterations
         self.cost = None
@@ -35,17 +35,20 @@ class LinearRegressor(object):
         -------
         self: object
         """
-        self.cost_ = []
-        self.w_ = np.zeros((x.shape[1], 1))
+        self.cost = []
+        self.w = np.zeros((x.shape[1], 1))
         m = x.shape[0]
 
         for _ in range(self.n_iterations):
-            y_pred = np.dot(x, self.w_)
+            y_pred = np.dot(x, self.w)
             residuals = y_pred - y
             gradient_vector = np.dot(x.T, residuals)
-            self.w_ -= (self.eta / m) * gradient_vector
-            cost = np.sum((residuals**2)) / (2 * m)
-            self.cost_.append(cost)
+            alpha_by_m = self.eta / m
+            self.w -= alpha_by_m * gradient_vector
+            residuals_sq = residuals**2
+            cost = np.sum(residuals_sq) / (2 * m)
+            print("The cost is %s" % (cost))
+            self.cost.append(cost)
         return self
 
     def predict(self, X):
