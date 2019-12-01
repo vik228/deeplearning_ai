@@ -122,3 +122,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.idea/
+.DS_*
+*.h5
+*.mat
+/coursera_courses/deeplearning.ai/Convolutional-Neural-Networks/Week1/datasets/
+/coursera_courses/deeplearning.ai/Convolutional-Neural-Networks/Week2/ResNets/datasets/
+datasets/*
