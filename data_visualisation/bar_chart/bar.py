@@ -107,10 +107,9 @@ class Bar(BaseObject):
     def ylabel_attrs(self, attr_dict):
         self.ylabel_attrs = attr_dict
 
-    def show_percentage(self, horizontal=False):
+    def show_percentage(self, horizontal=False, show_percentage=False):
         # create a list to collect the plt.patches data
         totals = []
-
         # find the values and append to list
         for i in self.ax.patches:
             totals.append(i.get_height())
@@ -119,10 +118,15 @@ class Bar(BaseObject):
             if horizontal:
                 x = i.get_x() + i.get_width()
                 y = i.get_y() + i.get_height() / 2
+                value1 = i.get_width()
+                value2 = str(round((i.get_width() / total) * 100, 2)) + '%'
             else:
                 x = i.get_x() + i.get_width() / 2
                 y = i.get_y() + i.get_height()
-            self.ax.text(x, y, str(round((i.get_height() / total) * 100, 2)) + '%', fontsize=15,
+                value1 = i.get_height()
+                value2 = str(round((i.get_height() / total) * 100, 2)) + '%'
+            value = str(value1) if not show_percentage else str(value2) + '%'
+            self.ax.text(x, y, value, fontsize=15,
                          color='dimgrey', ha='center', va='bottom')
 
     def show(self, **kwargs):
@@ -139,5 +143,4 @@ class Bar(BaseObject):
                 if attr_value:
                     property_attrs = getattr(self, '%s_attrs' % attr, {})
                     getattr(self.ax, 'set_%s' % attr)(attr_value, **property_attrs)
-        if show_percentage:
-            self.show_percentage(horizontal=horizontal)
+        self.show_percentage(horizontal=horizontal, show_percentage=show_percentage)

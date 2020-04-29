@@ -1,6 +1,4 @@
-import numpy as np
-
-
+import numpy
 class LinearRegressor(object):
     """ Linear Regression using Gradient Descent.
     Parameters
