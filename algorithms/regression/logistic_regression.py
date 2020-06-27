@@ -1,6 +1,6 @@
 import numpy as np
-from scipy.optimize import fmin_tnc
 from utils.activation_functions import sigmoid
+from optimizers.gradient_descent import GradientDescent
 
 
 class LogisticRegressor(object):
@@ -34,12 +34,11 @@ class LogisticRegressor(object):
 
     def fit(self, x, y):
         self.w = np.zeros((x.shape[1], 1))
-        opt_weights = fmin_tnc(
-            func=LogisticRegressor.cost_function,
-            x0=self.w,
-            fprime=LogisticRegressor.gradient,
-            args=(x, y.flatten()))
-        self.w = opt_weights[0]
+        gd = GradientDescent(self.eta, x, y)
+        gd.iterations = self.n_iterations
+        gd.theta = self.w
+        gd.optimise_mini_batch_gd(func=LogisticRegressor.cost_function, gradient=LogisticRegressor.gradient)
+        self.w = gd.theta
 
     def predict(self, x):
         theta = self.w[:, np.newaxis]
