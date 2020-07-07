@@ -1,7 +1,7 @@
 import math
 import numpy as np
 import pandas as pd
-from settings import DATASET_BASE_PATH
+from dsl.settings import DATASET_BASE_PATH
 
 
 def get_data_path(dir=None):
