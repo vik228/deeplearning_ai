@@ -58,6 +58,11 @@ class Plot(object):
     def regplot(self, x_key, y_key, **kwargs):
         self.plot('regplot', x_key, y_key, **kwargs)
 
+    def distplot(self, x_key, **kwargs):
+        axis, kwargs = Plot.get_axis_and_settings(**kwargs)
+        sns.distplot(self.data[x_key], ax=axis.ax, **kwargs)
+        axis.apply_settings()
+
     def count(self, x_key, **kwargs):
         axis, kwargs = Plot.get_axis_and_settings(**kwargs)
         sns.countplot(x=x_key, data=self.data, ax=axis.ax, **kwargs)
