@@ -55,6 +55,9 @@ class Plot(object):
     def line(self, x_key, y_key, **kwargs):
         self.plot('lineplot', x_key, y_key, **kwargs)
 
+    def regplot(self, x_key, y_key, **kwargs):
+        self.plot('regplot', x_key, y_key, **kwargs)
+
     def count(self, x_key, **kwargs):
         axis, kwargs = Plot.get_axis_and_settings(**kwargs)
         sns.countplot(x=x_key, data=self.data, ax=axis.ax, **kwargs)

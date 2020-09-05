@@ -38,3 +38,6 @@ class BigQuery(object):
     def run_query(self, query, **kwargs):
         run_config = bigquery.QueryJobConfig(**kwargs)
         return self.client.query(query, run_config)
+
+
+
