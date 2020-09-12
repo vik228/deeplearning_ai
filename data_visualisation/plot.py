@@ -65,7 +65,7 @@ class Plot(object):
 
     def histplot(self, x_key, **kwargs):
         axis, kwargs = Plot.get_axis_and_settings(**kwargs)
-        sns.distplot(self.data[x_key], ax=axis.ax, **kwargs)
+        sns.histplot(self.data[x_key], ax=axis.ax, **kwargs)
         axis.apply_settings()
 
     def count(self, x_key, **kwargs):
