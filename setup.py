@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="deeplearning_ai_vik228", # Replace with your own username
-    version="0.0.1",
+    version="0.0.2",
     author="Vikas Pandey",
     author_email="vik.iiitmg@gmail.com",
     description="Basic wrapper over plotting libraries",
