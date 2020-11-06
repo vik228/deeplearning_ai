@@ -77,3 +77,41 @@ def merge_nested_dicts(dict1, dict2):
             yield (k, dict1[k])
         else:
             yield (k, dict2[k])
+
+
+def get_or_drop_na_cols(df, **kwargs):
+    threshold = kwargs.get('threshold', 0.0)
+    drop = kwargs.get('drop', False)
+    nan_cols = [col for col in df.columns if df[col].isnull().mean() >= threshold]
+    if drop:
+        df.drop(nan_cols, axis=1, inplace=True)
+    return nan_cols
+
+
+def get_cols_with_nan_values(df):
+    return [col for col in df.columns if df[col].isnull().any()]
+
+
+def replace_categorical_nan_cols(df, columns, **kwargs):
+    replace_func = kwargs.get('replace_func')
+    if replace_func == 'mode':
+        for col in columns:
+            df[col] = df[col].fillna(df[col].mode()[0])
+
+
+def replace_numerical_nan_cols(df, columns, **kwargs):
+    replace_func = kwargs.get('replace_func')
+    if replace_func == 'mean':
+        for col in columns:
+            df[col] = df[col].fillna(df[col].mean())
+
+
+def convert_categorical_to_one_hot_encoding(df, columns, **kwargs):
+    cleaned_df = df
+    for col in columns:
+        dummy_df = pd.get_dummies(cleaned_df[col], drop_first=True)
+        cleaned_df.drop(col, axis=1, inplace=True)
+        cleaned_df = pd.concat([cleaned_df, dummy_df], axis=1)
+    return cleaned_df
+
+
