@@ -1,5 +1,5 @@
 # Introduction
-###### This project contains everything related to machine learning and deep learning. Its still in development phase but the aim here is to create a scafold to avoid all the redudant code the we need to write while working with a datascience project. The project contains following things -:
+###### This project contains everything related to machine learning and deep learning. Its still in development phase but the aim here is to create a scafold to avoid all the redudant code the we need to write while working on a datascience project. The project contains following things -:
 
 - [Implementations of well known ML algorithms from scratch](https://github.com/vik228/deeplearning_ai/tree/master/algorithms "Implementations of well known ML algorithms from scratch")
 - [Course materials from coursera](https://github.com/vik228/deeplearning_ai/tree/master/coursera_courses "Course materials from coursera")
