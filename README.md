@@ -13,3 +13,5 @@
 	 - Flow
 		 - [Data Collection and Preprocessing](https://github.com/vik228/deeplearning_ai/blob/master/Projects/AQI/data_collection.py "Data Collection")
 		 - [Data Exploration and Model Implementation](https://github.com/vik228/deeplearning_ai/blob/master/Projects/AQI/AQI%20Prediction.ipynb "Model Implementation")
+
+2. [Stock Price Prediction Using LSTM Model](https://github.com/vik228/deeplearning_ai/tree/master/Projects/stock-price-prediction-using-lstm "Stock Price Prediction Using LSTM Model")
