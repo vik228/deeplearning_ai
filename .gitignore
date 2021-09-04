@@ -129,3 +129,4 @@ dmypy.json
 /coursera_courses/deeplearning.ai/Convolutional-Neural-Networks/Week1/datasets/
 /coursera_courses/deeplearning.ai/Convolutional-Neural-Networks/Week2/ResNets/datasets/
 dsl/datasets/*
+.vscode/*
