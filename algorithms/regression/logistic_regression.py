@@ -29,8 +29,7 @@ class LogisticRegressor(object):
     @staticmethod
     def gradient(theta, x, y):
         m = x.shape[0]
-        return (1 / m) * np.dot(x.T, (
-            sigmoid(LogisticRegressor.net_input(x, theta)) - y))
+        return (1 / m) * np.dot(x.T, ( sigmoid(LogisticRegressor.net_input(x, theta)) - y))
 
     def fit(self, x, y):
         self.w = np.zeros((x.shape[1], 1))
@@ -40,12 +39,8 @@ class LogisticRegressor(object):
         gd.optimise_mini_batch_gd(func=LogisticRegressor.cost_function, gradient=LogisticRegressor.gradient)
         self.w = gd.theta
 
-    def predict(self, x):
-        theta = self.w[:, np.newaxis]
-        return LogisticRegressor.probability(x, theta)
-
     def accuracy(self, x, actual_classes, probab_threshold=0.5):
-        predicted_classes = (self.predict(x) >= probab_threshold).astype(int)
+        predicted_classes = (LogisticRegressor.probability(x, self.w) >= probab_threshold).astype(int)
         predicted_classes = predicted_classes.flatten()
         accuracy = np.mean(predicted_classes == actual_classes)
         return accuracy * 100

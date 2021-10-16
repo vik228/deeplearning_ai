@@ -92,7 +92,8 @@ class GradientDescent(object):
                 y_i = Y[i:i + batch_size]
                 predictions = np.dot(x_i, self.theta)
                 if gradient:
-                    self.theta = self.theta - self.learning_rate*gradient(self.theta, x_i, y_i)
+                    grad = gradient(self.theta, x_i, y_i)
+                    self.theta = self.theta - self.learning_rate*grad
                 else:
                     self.theta = self.theta - (1 / m) * self.learning_rate * (np.dot(x_i.T, predictions - y_i))
                 if cost_func:

@@ -69,6 +69,30 @@ class TextPreprocessor(object):
                 pair = (word, sentiment)
                 freqs[pair]  = freqs.get(pair, 0) + 1
         self.freqs = freqs
+    
+    def extract_features(self, sentiments):
+        features = []
+        sentiments = np.squeeze(sentiments).tolist()
+        for sentiment, words in zip(sentiments, self.processed_text):
+            positive = 0
+            negative = 0
+            for word in words:
+                positive += self.freqs.get((word, 1), 0)
+                negative += self.freqs.get((word, 0), 0)
+            features.append({'bias': 1, 'positive': positive, 'negative': negative, 'sentiment': sentiment})
+        return features
+    
+    def extract_features_from_texts(self, texts):
+        features = []
+        processed_text = [self.process_text(text) for text in texts]
+        for words in processed_text:
+            positive = 0
+            negative = 0
+            for word in words:
+                positive += self.freqs.get((word, 1), 0)
+                negative += self.freqs.get((word, 0), 0)
+            features.append({'bias': 1, 'positive': positive, 'negative': negative})
+        return features
 
 
 
