@@ -3,6 +3,10 @@ from sklearn.preprocessing import PolynomialFeatures
 
 
 class PolynomialRegressor(object):
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
     def __init__(self, eta=0.05, n_iterations=1000, degree=1):
         self.eta = eta
         self.n_iterations = n_iterations

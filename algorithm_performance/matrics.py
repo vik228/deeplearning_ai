@@ -3,6 +3,7 @@ import numpy as np
 
 class PerformanceMetrics(object):
     """
+<<<<<<< HEAD
     Defines methods to implement the model
 
     parameters
@@ -12,6 +13,17 @@ class PerformanceMetrics(object):
 
     y_predicted : array-like, shape = [n_samples]
         Predicted value from the model
+=======
+        Defines methods to implement the model
+
+        parameters
+        ----------
+        y_actual : array-like, shape = [n_samples]
+            Observed values from the training samples
+
+        y_predicted : array-like, shape = [n_samples]
+            Predicted value from the model
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
     """
 
     def __init__(self, y_actual, y_predicted):
@@ -30,9 +42,15 @@ class PerformanceMetrics(object):
 
     def mean_absolute_error(self):
         """Compute the mean absolute error
+<<<<<<< HEAD
         Returns
         ------
         mae : mean_absolute_error
+=======
+            Returns
+            ------
+            mae : mean_absolute_error
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         """
         n = self.y_actual.shape[0]
         mae = np.sum(np.abs(self.y_predicted - self.y_actual))
@@ -40,9 +58,15 @@ class PerformanceMetrics(object):
 
     def root_mean_squared_error(self):
         """Compute the root mean squared error
+<<<<<<< HEAD
         Returns
         ------
         rmse : root mean squared error
+=======
+            Returns
+            ------
+            rmse : root mean squared error
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         """
         return np.sqrt(self.mean_squared_error())
 

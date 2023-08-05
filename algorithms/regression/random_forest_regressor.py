@@ -5,6 +5,10 @@ from sklearn import metrics
 
 
 class MyRandomForestRegressor(object):
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
     def __init__(self, data, target, **kwargs):
         self.data = data
         self.target = target
@@ -112,6 +116,7 @@ class MyRandomForestRegressor(object):
     def max_leaf_nodes(self, max_leaf_nodes):
         self._max_leaf_nodes = max_leaf_nodes
 
+<<<<<<< HEAD
     def fit(self):
         self.random_forest = RandomForestRegressor(self.criterion)
         hyperparameters = [
@@ -130,18 +135,35 @@ class MyRandomForestRegressor(object):
             "random_forest",
             "random_search_cv",
         ]
+=======
+
+    def fit(self):
+        self.random_forest = RandomForestRegressor(self.criterion)
+        hyperparameters = [a for a in dir(self) if not a.startswith('__') and not a.startswith('_')]
+        params = {}
+        properties = ["data", "target", "fit", "predict", "get_metrics", "best_score", "best_params",
+                      "criterion", "random_forest", "random_search_cv"]
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         for hyperparameter in hyperparameters:
             if hyperparameter not in properties:
                 params[hyperparameter] = getattr(self, hyperparameter, None)
         self.random_search_cv = RandomizedSearchCV(
             estimator=self.random_forest,
             param_distributions=params,
+<<<<<<< HEAD
             scoring="neg_mean_squared_error",
+=======
+            scoring='neg_mean_squared_error',
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
             n_iter=100,
             cv=5,
             random_state=42,
             verbose=3,
+<<<<<<< HEAD
             n_jobs=1,
+=======
+            n_jobs=1
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         )
         self.random_search_cv.fit(self.data, self.target)
         self._best_score = self.random_search_cv.best_score_
@@ -155,5 +177,9 @@ class MyRandomForestRegressor(object):
         return {
             "MAE": metrics.mean_absolute_error(y_test, prediction),
             "MSE": metrics.mean_squared_error(y_test, prediction),
+<<<<<<< HEAD
             "RMSE": np.sqrt(metrics.mean_squared_error(y_test, prediction)),
+=======
+            "RMSE": np.sqrt(metrics.mean_squared_error(y_test, prediction))
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         }

@@ -3,12 +3,22 @@ from optimizers.gradient_descent import GradientDescent
 
 
 class LinearRegressor(object):
+<<<<<<< HEAD
     def __init__(self, X, Y, **kwargs):
         self.X = X
         self.Y = Y
         self.learning_rate = kwargs.get("learning_rate", 0.001)
         self.iterations = kwargs.get("iterations", 1000)
         self.batch_size = kwargs.get("batch_size", 20)
+=======
+
+    def __init__(self, X, Y, **kwargs):
+        self.X = X
+        self.Y = Y
+        self.learning_rate = kwargs.get('learning_rate', 0.001)
+        self.iterations = kwargs.get('iterations', 1000)
+        self.batch_size = kwargs.get('batch_size', 20)
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         self.cost_history = None
         self.w = None
 

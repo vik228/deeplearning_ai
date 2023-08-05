@@ -50,7 +50,6 @@ class NaiveBayes(object):
             if word in self.log_likelihood:
                 p += self.log_likelihood[word]
         return p
-
     def accuracy(self, test_x, test_y):
         y_hats = []
         for sentance in test_x:

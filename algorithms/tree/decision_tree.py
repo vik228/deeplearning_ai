@@ -22,7 +22,6 @@ class DecisionTree(object):
         label_column = self.data[:, -1]
         unique_values, counts = np.unique(label_column, return_counts=True)
         return unique_values[counts.argmax()]
-
     def entropy(self):
         class_values = self.data[:, -1]
         class_values = class_values[class_values > 0]
@@ -49,7 +48,6 @@ class DecisionTree(object):
         data_below = self.X[split_column_value <= split_value]
         data_above = self.X[split_column_value > split_value]
         return data_below, data_above
-
     def calculate_overall_entropy(self, split_column, split_value):
         data_below, data_above = self.split_contineous_data(split_column, split_value)
         total_data_points = len(data_below) + len(data_above)
@@ -75,7 +73,6 @@ class DecisionTree(object):
         self._best_split_col = best_split_column
         self._best_split_value = best_split_value
         return best_split_column, best_split_value
-
     def fit(self):
         if self.is_pure_split():
             return

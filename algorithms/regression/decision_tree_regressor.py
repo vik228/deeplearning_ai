@@ -10,6 +10,10 @@ import pydotplus
 
 
 class MyDecisionTreeRegressor(object):
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
     def __init__(self, data, target, **kwargs):
         self.data = data
         self.target = target
@@ -130,6 +134,7 @@ class MyDecisionTreeRegressor(object):
 
     def fit(self):
         self.dtree = DecisionTreeRegressor(self.criterion)
+<<<<<<< HEAD
         hyperparameters = [
             a for a in dir(self) if not a.startswith("__") and not a.startswith("_")
         ]
@@ -147,6 +152,11 @@ class MyDecisionTreeRegressor(object):
             "dtree",
             "grid_search",
         ]
+=======
+        hyperparameters = [a for a in dir(self) if not a.startswith('__') and not a.startswith('_')]
+        params = {}
+        properties = ["data", "target", "fit", "predict", "get_metrics", "plot_tree", "best_score", "best_params", "criterion", "dtree", "grid_search"]
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         for hyperparameter in hyperparameters:
             if hyperparameter not in properties:
                 params[hyperparameter] = getattr(self, hyperparameter, None)
@@ -172,13 +182,18 @@ class MyDecisionTreeRegressor(object):
         return {
             "MAE": metrics.mean_absolute_error(y_test, prediction),
             "MSE": metrics.mean_squared_error(y_test, prediction),
+<<<<<<< HEAD
             "RMSE": np.sqrt(metrics.mean_squared_error(y_test, prediction)),
+=======
+            "RMSE": np.sqrt(metrics.mean_squared_error(y_test, prediction))
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         }
 
     def plot_tree(self):
         features = list(self.data.columns)
         dot_data = StringIO()
         export_graphviz(
+<<<<<<< HEAD
             self.dtree,
             out_file=dot_data,
             feature_names=features,
@@ -187,3 +202,15 @@ class MyDecisionTreeRegressor(object):
         )
         graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
         Image(graph.create_png())
+=======
+            self.dtree, out_file=dot_data, feature_names=features, filled=True, rounded=True
+        )
+        graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
+        Image(graph.create_png())
+
+
+
+
+
+
+>>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
