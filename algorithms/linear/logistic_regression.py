@@ -4,10 +4,6 @@ from optimizers.gradient_descent import GradientDescent
 
 
 class LogisticRegressor(object):
-<<<<<<< HEAD
-=======
-
->>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
     def __init__(self, eta=0.00000001, n_iterations=1000):
         self.eta = eta
         self.n_iterations = n_iterations
@@ -21,14 +17,9 @@ class LogisticRegressor(object):
     def cost_function(theta, x, y):
         m = x.shape[0]
         total_cost = -(1 / m) * np.sum(
-<<<<<<< HEAD
             y * np.log(LogisticRegressor.probability(x, theta))
             + (1 - y) * np.log(1 - LogisticRegressor.probability(x, theta))
         )
-=======
-            y * np.log(LogisticRegressor.probability(x, theta)) +
-            (1 - y) * np.log(1 - LogisticRegressor.probability(x, theta)))
->>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         return total_cost
 
     @staticmethod
@@ -38,20 +29,15 @@ class LogisticRegressor(object):
     @staticmethod
     def gradient(theta, x, y):
         m = x.shape[0]
-<<<<<<< HEAD
         return (1 / m) * np.dot(
             x.T, (sigmoid(LogisticRegressor.net_input(x, theta)) - y)
         )
-=======
-        return (1 / m) * np.dot(x.T, ( sigmoid(LogisticRegressor.net_input(x, theta)) - y))
->>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
 
     def fit(self, x, y):
         self.w = np.zeros((x.shape[1], 1))
         gd = GradientDescent(self.eta, x, y)
         gd.iterations = self.n_iterations
         gd.theta = self.w
-<<<<<<< HEAD
         gd.optimise_mini_batch_gd(
             func=LogisticRegressor.cost_function, gradient=LogisticRegressor.gradient
         )
@@ -61,13 +47,6 @@ class LogisticRegressor(object):
         predicted_classes = (
             LogisticRegressor.probability(x, self.w) >= probab_threshold
         ).astype(int)
-=======
-        gd.optimise_mini_batch_gd(func=LogisticRegressor.cost_function, gradient=LogisticRegressor.gradient)
-        self.w = gd.theta
-
-    def accuracy(self, x, actual_classes, probab_threshold=0.5):
-        predicted_classes = (LogisticRegressor.probability(x, self.w) >= probab_threshold).astype(int)
->>>>>>> 6512380587113e43ce1ee996fe7953cd573a94b6
         predicted_classes = predicted_classes.flatten()
         accuracy = np.mean(predicted_classes == actual_classes)
         return accuracy * 100
