@@ -1,22 +1,26 @@
-import setuptools
+from __future__ import annotations
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+from setuptools import find_packages
+from setuptools import setup
 
-setuptools.setup(
-    name="deeplearning_ai_vik228",  # Replace with your own username
-    version="0.0.2",
-    author="Vikas Pandey",
-    author_email="vik.iiitmg@gmail.com",
-    description="Basic wrapper over plotting libraries",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="https://github.com/vik228/deeplearning_ai.git",
-    packages=setuptools.find_packages(),
+with open('requirements/base.txt') as f:
+    requirements = f.read().splitlines()
+
+setup(
+    name="deeplearning_ai",
+    version="0.1",
+    packages=find_packages(),
+    author='Vikas Pandey',
+    install_requires=requirements,
+    include_package_data=True,
+    author_email='vikas.pandey@anarock.com',
+    description='Implementations of ML and DL algorithms',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    url='https://github.com/vik228/deeplearning_ai',
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
-    python_requires=">=3.6",
 )
