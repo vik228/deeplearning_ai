@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from neural_networks import activations
-
+from algorithms.neural_networks import activations
 from algorithms.neural_networks.layers.layer import Layer
 
 

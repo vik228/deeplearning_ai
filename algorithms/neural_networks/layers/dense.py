@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import numpy as np
-from neural_networks.layers.layer import Layer
+
+from algorithms.neural_networks.layers.layer import Layer
 
 
 class Dense(Layer):

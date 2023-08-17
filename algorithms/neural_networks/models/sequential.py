@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from neural_networks import losses
-
+from algorithms.neural_networks import losses
 from optimizers.sgd import SGD
 
 
