@@ -9,6 +9,6 @@ class SGD:
     def step(self, layers):
         for layer in layers:
             if hasattr(layer, "weights") and hasattr(layer, "weight_gradients"):
-                layer.weights -= self.learning_rate * layer.weights_gradient
+                layer.weights -= self.learning_rate * layer.weight_gradients
             if hasattr(layer, "bias") and hasattr(layer, "bias_gradients"):
-                layer.bias -= self.learning_rate * layer.bias_gradient
+                layer.bias -= self.learning_rate * layer.bias_gradients

@@ -13,15 +13,18 @@ class Dense(Layer):
         self.bias = None
 
     def init_parameters(self, input_shape):
-        self.weights = np.random.rand(input_shape[-1], self.units) * 0.01
-        self.bias = np.zeros((input_shape[-1], self.units))
+        self.weights = np.random.rand(input_shape[-1], self.units) - 0.5
+        self.bias = np.zeros((input_shape[0], self.units)) - 0.5
         self.output_shape = (input_shape[0], self.units)
         self.weight_gradients = None
         self.bias_gradients = None
 
     def forward_propagation(self, input):
+        if self.weights is None:
+            self.init_parameters(input.shape)
         self.input = input
-        return np.dot(input, self.weights) + self.bias
+        output = np.dot(input, self.weights) + self.bias
+        return output
 
     def backward_propagation(self, output_error):
         input_error = np.dot(output_error, self.weights.T)
