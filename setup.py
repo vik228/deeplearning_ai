@@ -13,7 +13,7 @@ setup(
     author='Vikas Pandey',
     install_requires=requirements,
     include_package_data=True,
-    author_email='vikas.pandey@anarock.com',
+    author_email='vik.iiitmg@gmail.com',
     description='Implementations of ML and DL algorithms',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
