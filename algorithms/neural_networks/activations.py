@@ -27,6 +27,10 @@ def tanh_prime(z):
     return 1 - np.tanh(z)**2
 
 
+def softmax(z, axis=0):
+    return np.exp(z) / np.expand_dims(np.sum(np.exp(z), axis=axis), axis)
+
+
 def get_activation(activation, return_detivative=False):
     activation_func = globals().get(activation)
     if activation_func and callable(activation_func):
