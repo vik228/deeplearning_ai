@@ -31,6 +31,11 @@ def softmax(z, axis=0):
     return np.exp(z) / np.expand_dims(np.sum(np.exp(z), axis=axis), axis)
 
 
+def softmax_prime(z, axis=0):
+    s = softmax(z)
+    return np.diagflat(s) - np.outer(s, s)
+
+
 def get_activation(activation, return_detivative=False):
     activation_func = globals().get(activation)
     if activation_func and callable(activation_func):
