@@ -32,8 +32,7 @@ def softmax(z, axis=0):
 
 
 def softmax_prime(z, axis=0):
-    s = softmax(z)
-    return np.diagflat(s) - np.outer(s, s)
+    return np.diagflat(z) - np.outer(z, z)
 
 
 def get_activation(activation, return_detivative=False):

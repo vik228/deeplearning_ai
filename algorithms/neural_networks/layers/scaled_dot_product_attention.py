@@ -18,26 +18,25 @@ class ScaledDotProductAttention(Layer):
         self.key_gradients = None
         self.value_gradients = None
 
-    def forward_propagation(self, query, key, value):
+    def forward_propagation(self, query, key, value, mask=None):
         self.key = key
         self.query = query
         self.value = value
         score = np.matmul(query, key.T) / np.sqrt(self.key.shape[-1])
+        if mask is not None:
+            score += (mask * -1e9)
         self.attention = softmax(score, axis=-1)
         output = np.matmul(self.attention, value)
         return output
 
     def backward_propagation(self, output_error):
-        self.softmax_prime = softmax_prime(self.attention)
-        self.query_gradients = np.matmul(
-            np.matmul(self.softmax_prime, self.key.T), self.value) / np.sqrt(
-                self.key.shape[-1])
-        self.key_gradients = np.matmul(
-            np.matmul(self.softmax_prime, self.query), self.value) / np.sqrt(
-                self.key.shape[-1])
-        self.value_gradients = self.softmax_prime
-
-        q_error = output_error * self.query_gradients
-        k_error = output_error * self.key_gradients
-        v_error = output_error * self.value_gradients
-        return q_error, k_error, v_error
+        dk = self.key.shape[-1]
+        dL_df = output_error
+        dL_dx = dL_df * self.value.T * softmax_prime(self.attention)
+        dL_dQ = np.matmul(dL_dx, self.key) / np.sqrt(dk)
+        dL_dk = np.matmul(dL_dx, self.query) / np.sqrt(dk)
+        dL_dv = np.matmul(self.attention, dL_df)
+        self.query_gradients = dL_dQ
+        self.key_gradients = dL_dk
+        self.value_gradients = dL_dv
+        return dL_dQ, dL_dk, dL_dv
