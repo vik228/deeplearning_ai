@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 
+from algorithms.neural_networks.layers.attention.scaled_dot_product_attention import ScaledDotProductAttention
 from algorithms.neural_networks.layers.layer import Layer
-from algorithms.neural_networks.layers.scaled_dot_product_attention import ScaledDotProductAttention
 
 
 class MultiHeadAttention(Layer):
@@ -35,6 +35,16 @@ class MultiHeadAttention(Layer):
         return np.concatenate(all_head_attention_weights, axis=-1)
 
     def backward_propagation(self, output_error):
+        total_dL_dQ = 0
+        total_dL_dK = 0
+        total_dL_dV = 0
         for idx, head in enumerate(self.heads):
             dL_dQ, dL_dK, dL_dV = head.backward_propagation(output_error)
-        return super().backward_propagation(output_error)
+            dL_dWQ = np.matmul(dL_dQ, self.weights[idx][0].T)
+            dL_dWK = np.matmul(dL_dK, self.weights[idx][1].T)
+            dL_dWV = np.matmul(dL_dV, self.weights[idx][2].T)
+            self.weight_gradients.append((dL_dWQ, dL_dWK, dL_dWV))
+            total_dL_dQ += dL_dWQ
+            total_dL_dK += dL_dWK
+            total_dL_dV += dL_dWV
+        return total_dL_dQ, total_dL_dK, total_dL_dV
