@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from algorithms.neural_networks.layers.attention.scaled_dot_product_attention import ScaledDotProductAttention
+from algorithms.neural_networks.layers.attention.scaled_dot_product import ScaledDotProductAttention
 from algorithms.neural_networks.layers.layer import Layer
 
 
